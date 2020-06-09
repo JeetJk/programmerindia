@@ -1,39 +1,28 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import Home from '../screens/Home';
+import { View, Text,  Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 
-const Stack = createStackNavigator();
- 
-//  Using functional component
 
-const StackNav = () => {
-  return (
-    <NavigationContainer>
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Jai Shree Ram" component={ Home } />
-      <Stack.Screen name="Notifications" component={ Notification } />
-      
-    </Stack.Navigator>
-  </NavigationContainer>
-     
-  );
+const Header = (props) =>
+{
+  return(
+    <View style={styles.header}>
+    <TouchableOpacity style={{padding:15, paddingLeft: 0, flexDirection: 'row'}} onPress={() => props.navigation.toggleDrawer()}>
+      <Image  style={{width:30,height:20}} source={require('../../assets/images/drawer.png')}/>
+      <Text style={{marginLeft:10, color: '#3cb6e3', fontSize: 16, fontWeight: '900'}}>{props.title}</Text>
+    </TouchableOpacity>
+    
+  </View>
+  )
 }
 
-const Drawer = createDrawerNavigator();
-// const Stack = createStackNavigator();
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#f7f7f7',
+    borderBottomColor: '#c6c6c6', 
+    borderBottomWidth: 2, 
+    paddingLeft:10,   
+  },
+})
 
-
-export  function Drawer() {
-  return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={ StackNav } />
-        
-      </Drawer.Navigator>
-    </NavigationContainer>
-  );
-}
-
-
+export default Header;
